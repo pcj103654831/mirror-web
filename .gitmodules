@@ -2,3 +2,9 @@
 	path = help/_posts/mirrorz-help-ng-transpiled
 	url = https://github.com/tuna/mirrorz-help-ng.git
 	branch = transpiled
+[submodule "tunasync-scripts"]
+	path = tunasync-scripts
+	url = https://github.com/pcj103654831/tunasync-scripts.git
+[submodule "tunasync"]
+	path = tunasync
+	url = https://github.com/pcj103654831/tunasync.git

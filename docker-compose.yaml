@@ -1,0 +1,11 @@
+version: '3'
+services:
+  web:
+    image: harbor.cowarobot.cn/devops/mirror-web:v0.0.2
+    environment:
+      - TZ=Asia/Shanghai
+    ports:
+      - '4000:4000'
+    volumes:
+      - ./:/src
+    restart: always

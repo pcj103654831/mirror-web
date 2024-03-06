@@ -1,5 +1,6 @@
-FROM alpine:3.11
-MAINTAINER Xuanwo <xuanwo.cn@gmail.com>
+FROM alpine:3.19
+LABEL Xuanwo <xuanwo.cn@gmail.com>
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apk/repositories
 RUN apk add --update \
     nodejs ruby ruby-dev ruby-rdoc ruby-irb ruby-io-console ruby-nokogiri \
     gcc libc-dev libffi-dev zlib-dev libxml2-dev libxslt-dev build-base \
@@ -7,8 +8,10 @@ RUN apk add --update \
 RUN gem sources --add https://mirrors.tuna.tsinghua.edu.cn/rubygems/ --remove https://rubygems.org/
 RUN gem install bundler
 RUN bundle config build.nokogiri --use-system-libraries
-VOLUME /src
 WORKDIR /src
+COPY . /src
 EXPOSE 4000
-CMD bundle install && jekyll server -H 0.0.0.0
+RUN apk add --update git
+RUN bundle install
+CMD jekyll server -H 0.0.0.0
 
